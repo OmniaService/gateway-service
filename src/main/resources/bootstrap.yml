@@ -1,15 +1,12 @@
 server:
   port: 12000
 spring:
+  profiles:
+    active: dev
+    include: routes
   output.ansi.enabled: 'ALWAYS'
   application:
     name: gatway-service
   cloud:
     config:
       uri: http://localhost:15000
-
-zuul:
-  ignoredServices: '*'
-  routes:
-    user-service: /users/**
-    serviceId: users
