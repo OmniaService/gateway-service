@@ -1,5 +1,9 @@
 server:
   port: 12000
+
+spring.profiles.active:
+spring.profiles.include: Routes
+
 spring:
   output.ansi.enabled: 'ALWAYS'
   application:
@@ -7,9 +11,3 @@ spring:
   cloud:
     config:
       uri: http://localhost:15000
-
-zuul:
-  ignoredServices: '*'
-  routes:
-    user-service: /users/**
-    serviceId: users
