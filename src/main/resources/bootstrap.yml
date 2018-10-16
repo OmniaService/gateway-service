@@ -1,5 +1,9 @@
 server:
   port: 12000
+
+spring.profiles.active:
+spring.profiles.include: Routes
+
 spring:
   profiles:
     active: dev
