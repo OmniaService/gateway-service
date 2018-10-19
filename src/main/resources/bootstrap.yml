@@ -7,7 +7,7 @@ spring:
     include: routes
   output.ansi.enabled: 'ALWAYS'
   application:
-    name: gatway-service
+    name: gateway-service
   cloud:
     config:
       uri: http://localhost:15000
