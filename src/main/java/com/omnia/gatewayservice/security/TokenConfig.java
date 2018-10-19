@@ -20,6 +20,9 @@ public class TokenConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        /*
+            http.authorizeRequests().anyRequest().permitAll();
+        */
         http
                 .csrf().disable()
                 .sessionManagement()
@@ -33,10 +36,6 @@ public class TokenConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
-    }
 
-    @Bean
-    public JwtConfig jwtConfig() {
-        return new JwtConfig();
     }
 }
