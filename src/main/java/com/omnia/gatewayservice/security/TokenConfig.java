@@ -24,11 +24,12 @@ public class TokenConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*
-            http.authorizeRequests().anyRequest().permitAll();
-        */
+        // http.authorizeRequests().anyRequest().permitAll();
         http
-                .csrf().disable().cors().and()
+                //.headers().frameOptions().sameOrigin().and()
+                .csrf().disable().cors()
+                //.configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -38,7 +39,7 @@ public class TokenConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
-                .antMatchers(HttpMethod.OPTIONS, jwtConfig.getUri()).permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/save/").permitAll()
                 .anyRequest().authenticated();
 /*
         http
