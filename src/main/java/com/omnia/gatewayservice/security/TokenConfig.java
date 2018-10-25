@@ -39,32 +39,8 @@ public class TokenConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/save/").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/").permitAll()
                 .anyRequest().authenticated();
-/*
-        http
-                .csrf().disable().cors().and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,
-                        "/auth",
-                        "/auth/",
-                        "/auth/save",
-                        "/auth/save/")
-                .permitAll()
-                .antMatchers(HttpMethod.POST,
-                        "/auth",
-                        "/auth/",
-                        "/auth/save",
-                        "/auth/save/").permitAll()
-                .anyRequest().authenticated();
-        */
     }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
